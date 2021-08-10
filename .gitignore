@@ -1,0 +1,12 @@
+SchoolAdmin/bin
+SchoolAdmin/obj
+SchoolAdmin/obj*
+SchoolAdmin/bin*
+
+SchoolAdmin.Library/bin
+SchoolAdmin.Library/obj
+SchoolAdmin.Library/obj*
+SchoolAdmin.Library/bin*
+
+.DS_Store
+.vs/
