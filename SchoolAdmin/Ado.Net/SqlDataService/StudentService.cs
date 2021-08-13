@@ -64,18 +64,18 @@ namespace SchoolAdmin.Ado.Net.SqlDataService
 
             // SQL query without parameters
             string commandStr = "SELECT * FROM Students WHERE " + $"{filterPair.Key} {comparer} '{filterPair.Value}'";
-            //string commandStr3 = "SELECT * FROM Students WHERE RegNumber = 'Physics' OR Subject = 'Chemistry' OR Subject = 'Biology'";
+            //string commandStr3 = "SELECT * FROM Students WHERE RegNumber = 5001 OR Level = 'SSS3' OR Level = 'SSS2'";
 
             // SQL query with parameters
-            // string commandStr2 = "SELECT * FROM Teachers WHERE " + $"{filterPair.Key} {comparer} @param";
-            //string commandStr4 = "SELECT * FROM Teachers WHERE Subject = @p1 OR Subject = @p2 OR Subject = @p3";
+            // string commandStr2 = "SELECT * FROM Students WHERE " + $"{filterPair.Key} {comparer} @param";
+            //string commandStr4 = "SELECT * FROM Students WHERE Level = @p1 OR Level = @p2 OR Level = @p3";
 
             cmd = new SqlCommand(commandStr, conn);
             // Specify parameters here, if any
             //cmd.Parameters.AddWithValue("param", filterPair.Value);
-            //cmd.Parameters.AddWithValue("p1", "Physics");
-            //cmd.Parameters.AddWithValue("p2", "Chemistry");
-            //cmd.Parameters.AddWithValue("p3", "Biology");
+            //cmd.Parameters.AddWithValue("p1", "SSS1");
+            //cmd.Parameters.AddWithValue("p2", "SSS2");
+            //cmd.Parameters.AddWithValue("p3", "SSS3");
 
             conn.Open();
             rdr = cmd.ExecuteReader();

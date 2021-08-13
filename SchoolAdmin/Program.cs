@@ -10,6 +10,7 @@ using MongoDB.Driver;
 using System.Data.SqlClient;
 using SchoolAdmin.Ado.Net.DTO;
 using SchoolAdmin.Ado.Net.SqlDataService;
+using System.Data;
 
 namespace SchoolAdmin
 {
@@ -27,64 +28,74 @@ namespace SchoolAdmin
 
 
             //Define and insert Teacher objects
-            TeacherDTO teacher1 = new TeacherDTO() { FirstName = "Adeleke", MiddleName = "", LastName = "Ayinde", Subject = "Physics" };
-            TeacherDTO teacher2 = new TeacherDTO() { FirstName = "Temi", MiddleName = "Temitope", LastName = "Tegbe", Subject = "Philosophy" };
-            TeacherDTO teacher3 = new TeacherDTO() { FirstName = "John", MiddleName = "Tony", LastName = "Ubi", Subject = "Product Design" };
-            TeacherDTO teacher4 = new TeacherDTO() { FirstName = "Tonia", MiddleName = "Seyi", LastName = "Adegbite", Subject = "Python" };
-            teacherService.Insert(teacher1);
-            teacherService.Insert(teacher2);
-            teacherService.Insert(teacher3);
-            teacherService.Insert(teacher4);
+            //TeacherDTO teacher1 = new TeacherDTO() { FirstName = "Adeleke", MiddleName = "", LastName = "Ayinde", Subject = "Physics" };
+            //TeacherDTO teacher2 = new TeacherDTO() { FirstName = "Temi", MiddleName = "Temitope", LastName = "Tegbe", Subject = "Philosophy" };
+            //TeacherDTO teacher3 = new TeacherDTO() { FirstName = "John", MiddleName = "Tony", LastName = "Ubi", Subject = "Product Design" };
+            //TeacherDTO teacher4 = new TeacherDTO() { FirstName = "Tonia", MiddleName = "Seyi", LastName = "Adegbite", Subject = "Python" };
+            //teacherService.Insert(teacher1);
+            //teacherService.Insert(teacher2);
+            //teacherService.Insert(teacher3);
+            //teacherService.Insert(teacher4);
 
             // Define new Teacher data for the update
             //TeacherDTO newteacherData = new TeacherDTO() { MiddleName = "Abidemi" };
 
             // Define filter information
-            KeyValuePair<string, object> filterPair = new KeyValuePair<string, object>("StaffId", 11004);
+              //KeyValuePair<string, object> filterPair = new KeyValuePair<string, object>("StaffId", 11004);
 
-            // Invoke the Update method 
             
-           //teacherService.Update("teachers",filterPair, "=", newteacherData);
 
             // Define data for the update
-            KeyValuePair<string, object> newData = new KeyValuePair<string, object>("staff_id", 10003);
+           // KeyValuePair<string, object> newData = new KeyValuePair<string, object>("staff_id", 10003);
 
             // Invoke the Update method to make the change 
-            //teacherService.Update(filterPair, "=", newteacherData);
+           // teacherService.Update(filterPair, "=", newteacherData);
 
             // Invoke the Delete method to make the change 
-           // teacherService.Delete(filterPair, "=");
+            //teacherService.Delete(filterPair, "=");
 
-            // Query the database for all teachers
-            Console.WriteLine("The available teachers are: ");
-            var teachers = teacherService.FetchAll();
-            foreach (var teacher in teachers)
-            {
-                Console.WriteLine($"{teacher.StaffId} \t{teacher.FirstName} \t{teacher.MiddleName} \t{teacher.LastName}");
-            }
-            Console.WriteLine("\n\n");
+            //Query the database for all teachers
 
-            //// Define filter information
-            //KeyValuePair<string, object> filterPair = new KeyValuePair<string, object>("StaffId", 11000);
-            //var filteredTeachers = teacherService.FetchWithFilter(filterPair, ">=");
-            //Console.WriteLine("The matching teachers for this query are: ");
-            //foreach (var teacher in filteredTeachers)
-            //{
-            //    Console.WriteLine($"{teacher.StaffId} \t{teacher.FirstName} \t{teacher.MiddleName} \t{teacher.LastName}");
-            //}
+           //Console.WriteLine("The available teachers are: ");
+           //var teachers = teacherService.FetchAll();
+           // foreach (var teacher in teachers)
+           // {
+           //     Console.WriteLine($"{teacher.StaffId} \t{teacher.FirstName} \t{teacher.MiddleName} \t{teacher.LastName}");
+           // }
+           // Console.WriteLine("\n\n");
 
-
-            // Define and insert Student objects
-            StudentDTO student1 = new StudentDTO() { FirstName = "Newman", MiddleName = "Philip", LastName = "Amadi", Level = "SSS 3" };
-            StudentDTO student2 = new StudentDTO() { FirstName = "Habeeb", MiddleName = "", LastName = "Olakitan", Level = "SeniorMan" };
-            StudentDTO student3 = new StudentDTO() { FirstName = "Samuel", MiddleName = "Tony", LastName = "Dotun", Level = "SSS 2" };
-            StudentDTO student4 = new StudentDTO() { FirstName = "Zacheus", MiddleName = "", LastName = "Adewale", Level = "SSS1" };
-            studentService.Insert(student1);
-            studentService.Insert(student2);
-            studentService.Insert(student3);
-            studentService.Insert(student4);
+           // var filteredTeachers = teacherService.FetchWithFilter(filterPair, ">=");
+           // Console.WriteLine("The matching teachers for this query are: ");
+           // foreach (var teacher in filteredTeachers)
+           // {
+           //     Console.WriteLine($"{teacher.StaffId} \t{teacher.FirstName} \t{teacher.MiddleName} \t{teacher.LastName}");
+           // }
 
 
+            //Define and insert Student objects
+            //StudentDTO student1 = new StudentDTO() { FirstName = "Newman", MiddleName = "Philip", LastName = "Amadi", Level = "SSS 3" };
+            //StudentDTO student2 = new StudentDTO() { FirstName = "Habeeb", MiddleName = "", LastName = "Olakitan", Level = "SeniorMan" };
+            //StudentDTO student3 = new StudentDTO() { FirstName = "Samuel", MiddleName = "Tony", LastName = "Dotun", Level = "SSS 2" };
+            //StudentDTO student4 = new StudentDTO() { FirstName = "Zacheus", MiddleName = "", LastName = "Adewale", Level = "SSS1" };
+            //studentService.Insert(student1);
+            //studentService.Insert(student2);
+            //studentService.Insert(student3);
+            //studentService.Insert(student4);
+
+
+            // Instantiate the TeacherDataAdapterService class
+            TeacherDataAdapterService teacherADPService = new TeacherDataAdapterService();
+            teacherADPService.PopulateDataSet();
+            teacherADPService.ManipulateDataSet();
+
+            DataSet teacherDS = teacherADPService.TeacherDataSet;
+
+            // Instantiate the StudentDataAdapterService class
+            //StudentDataAdapterService studentADPService = new StudentDataAdapterService();
+            //studentADPService.PopulateDataSet();
+            //studentADPService.ManipulateDataSet();
+
+            //DataSet studentDS = studentADPService.StudentDataSet;
 
             // instantiate the mongoDbService class
             //MongoDbService dbService = new MongoDbService();
